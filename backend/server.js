@@ -1,5 +1,6 @@
 const path = require('path')
 const express = require('express')
+const cors = require('cors')
 const dotenv = require('dotenv').config()
 const PORT = process.env.PORT || 5000
 const {errorHandler} = require('./middleware/errorMiddleware')
@@ -25,6 +26,15 @@ app.use('/api/tickets', require('./routes/ticketRoutes'))
 
 
 
+app.use(cors())
+
+app.get('/products/:id', function (req, res, next) {
+  res.json({msg: 'This is CORS-enabled for all origins!'})
+})
+
+app.listen(80, function () {
+  console.log('CORS-enabled web server listening on port 80')
+})
 
 
 app.use(errorHandler)
