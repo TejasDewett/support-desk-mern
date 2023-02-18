@@ -10,10 +10,10 @@ const connectDB = require('./config/db')
 //connect to db
 connectDB()
 
-
 const app = express()
 
 app.use(express.json())
+app.use(cors())
 app.use(express.urlencoded({extended: false}))
 
 app.get('/', (req, res) => {
@@ -23,19 +23,6 @@ app.get('/', (req, res) => {
 //Routes
 app.use('/api/users', require('./routes/userRoutes'))
 app.use('/api/tickets', require('./routes/ticketRoutes'))
-
-
-
-app.use(cors())
-
-app.get('/products/:id', function (req, res, next) {
-  res.json({msg: 'This is CORS-enabled for all origins!'})
-})
-
-app.listen(80, function () {
-  console.log('CORS-enabled web server listening on port 80')
-})
-
 
 app.use(errorHandler)
 
