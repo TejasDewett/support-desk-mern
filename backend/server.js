@@ -13,6 +13,7 @@ connectDB()
 const app = express()
 
 app.use(express.json())
+/*random comment*/
 app.use(cors())
 app.use(express.urlencoded({extended: false}))
 
